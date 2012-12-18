@@ -7,7 +7,8 @@
 	include('config.php');
 
 	$data = new SimpleXMLElement(file_get_contents('https://api.novotelecom.ru/billing/?method=userInfo&login=' . 
-		urlencode($login) . '&passwordHash=' . urlencode(md5($password))));
+		urlencode($login) . '&passwordHash=' . urlencode(
+		isset($passwordHash) ? $passwordHash : md5($password))));
 
 	if($result = round((float)$data->balance, 2)):
 ?>
